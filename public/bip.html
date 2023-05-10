@@ -7,30 +7,11 @@
     <title>Document</title>
 </head>
 <body>
+    <button id="start-btn">start</button>
+    <button id="stop-btn">stop</button>
     <input type="range" id="range-input" />
-    <script>
-        const fader = document.querySelector('#range-input')
-        // The code in the main global scope.
-        class MyWorkletNode extends AudioWorkletNode {
-            constructor(context) {
-                super(context, 'bip');
-            }
-        }
-        let context;
-        window.addEventListener('click', () => {
-            if(!context) {
-                context = new AudioContext();
-                context.audioWorklet.addModule('bip-worker.js').then(() => {
-                    let node = new MyWorkletNode(context);
-                    node.connect(context.destination);
-                    fader.addEventListener('change', (event) => {
-                        console.log(event.target.value)
-                        const multiplier = node.parameters.get('multiplier');
-                        multiplier.setValueAtTime(event.target.value / 100, context.currentTime);
-                    });
-                });
-            }
-        })
-    </script>
+    
+    <script src="cycle.js"></script>
+    <script src="bip.js"></script>
 </body>
 </html>

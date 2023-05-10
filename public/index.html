@@ -8,12 +8,14 @@
 </head>
 <body>
     <button id="start-btn">start</button>
+    <button id="stop-btn">stop</button>
     <p>What the ...</p>
     <a href="bip.html">bip audio worker</a>
     <script>
         console.log('Start script')
 
         const startBtn = document.querySelector('#start-btn');
+        const stopBtn = document.querySelector('#stop-btn')
         const audioCtx = new AudioContext();
         const oscillatorNode = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
@@ -24,6 +26,9 @@
             audioCtx.resume()
             oscillatorNode.start()
             console.log('Start audio');
+        })
+        stopBtn.addEventListener('click', () => {
+            audioCtx.suspend()
         })
     </script>
 </body>
