@@ -8,7 +8,6 @@ class MyWorkletNode extends AudioWorkletNode {
 }
 const mapRange = (input, imin, imax, min, max) => (input - imin) / imax * (max - min) + min
 
-
 let context;
 
 window.addEventListener('click', () => {
